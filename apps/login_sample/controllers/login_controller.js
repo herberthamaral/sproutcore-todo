@@ -7,7 +7,7 @@ LoginSample.loginController = SC.ObjectController.create({
     beginLogin: function(){
         try{
             var username = this.get('username');
-            var password = this.get('username');
+            var password = this.get('password');
             if (username ==  null || username == '')
                 throw SC.Error.desc('Insira um username válido');
             if (password == null || password == '')
