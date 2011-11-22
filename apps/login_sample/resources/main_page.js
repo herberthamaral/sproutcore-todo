@@ -1,10 +1,3 @@
-// ==========================================================================
-// Project:   LoginSample - mainPage
-// Copyright: @2011 My Company, Inc.
-// ==========================================================================
-/*globals LoginSample */
-
-// This page describes the main user interface for your application.  
 LoginSample.mainPage = SC.Page.design({
 
   // The main pane is made visible on screen as soon as your app is loaded.

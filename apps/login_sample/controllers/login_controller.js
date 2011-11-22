@@ -1,18 +1,34 @@
-// ==========================================================================
-// Project:   LoginSample.loginController
-// Copyright: @2011 My Company, Inc.
-// ==========================================================================
-/*globals LoginSample */
+LoginSample.loginController = SC.ObjectController.create({
+    username: '',
+    password: '',
+    errorMessage: '',
+    isLoggingIn: NO,
+    onLoginGoToPageName: 'mainPage.mainPane',
+    beginLogin: function(){
+        try{
+            var username = this.get('username');
+            var password = this.get('username');
+            if (username ==  null || username == '')
+                throw SC.Error.desc('Insira um username válido');
+            if (password == null || password == '')
+                throw SC.Error.desc('Insira um password válido')
+            this.set('isLoggingIn', YES);
+            setTimeout(function(){ LoginSample.loginController.endLogin(true)  }, 1000);
+            return YES;
+        }catch(err){
+            this.set('errorMessage',err.message);
+            this.set('isLoggingIn', NO);
+            return NO;
+        }
+    },
+    endLogin:function(response){
+        this.set('isLoggingIn', NO);
+        var pageName = LoginSample.loginController.get('onLoginGoToPageName');
+        var pane;
+        pane = LoginSample.getPath('loginPage.loginPane');
+        pane.remove();
+        pane = LoginSample.getPath(pageName);
+        pane.append();
+    }
 
-/** @class
-
-  (Document Your Controller Here)
-
-  @extends SC.Object
-*/
-LoginSample.loginController = SC.ObjectController.create(
-/** @scope LoginSample.loginController.prototype */ {
-
-  // TODO: Add your own code here.
-
-}) ;
+});
